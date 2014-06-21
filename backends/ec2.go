@@ -129,6 +129,7 @@ func defaultConfigValues() (config *ec2Config) {
   config.instanceType  = "t1.micro"
   config.zone          = "us-east-1a"
   config.sshUser       = "ec2-user"
+  config.tag           = "docker-ec2-swarm"
   config.sshLocalPort  = "4910"
   config.sshRemotePort = "4243"
   config.sshKey        =  defaultSshKeyPath()
