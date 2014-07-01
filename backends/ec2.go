@@ -127,7 +127,7 @@ func defaultConfigValues() (config *ec2Config) {
 	config.region = aws.USEast
 	config.ami = "ami-7c807d14"
 	config.instanceType = "t1.micro"
-	config.zone = "us-east-1a"
+	config.zone = "us-east-1b"
 	config.sshUser = "ec2-user"
 	config.tag = "docker-ec2-swarm"
 	config.sshLocalPort = "4910"
