@@ -242,11 +242,14 @@ func (c *ec2Client) startInstance() error {
 		InstanceType: c.config.instanceType,
 		KeyName:      c.config.keypair,
 		AvailZone:    c.config.zone,
-		// TODO: allow more than one sg in the future
-		SecurityGroups: []ec2.SecurityGroup{ec2.SecurityGroup{Name: c.config.securityGroup}},
 		UserData:       []byte(userdata),
 	}
-
+	// Only set the securityGroup field if there is an actual value to send,
+	// otherwise the API call will fail.
+	if c.config.securityGroup != "" {
+		// TODO: allow more than one sg in the future
+		options.SecurityGroups = []ec2.SecurityGroup{ec2.SecurityGroup{Name: c.config.securityGroup}}
+	}
 	resp, err := c.ec2Conn.RunInstances(&options)
 	if err != nil {
 		return err
